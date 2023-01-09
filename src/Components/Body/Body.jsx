@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useContext} from 'react'
 import axios from "axios"
 import Cards from "../Cards/Cards"
 import Slider from "react-slick";
@@ -9,11 +9,13 @@ import clothes from "../../assets/clothes.jpg";
 import electronics from "../../assets/monilePhone.jpg";
 import jewelry from "../../assets/weddingRing.jpg";
 import Loading from "../Loading/Loading"
+import {ThemeContext} from "../../api/Context"
 
 
 
 
-const Body = ({theSetter}) => {
+const Body = () => {
+  const {theSetter, theme} = useContext(ThemeContext)
 
   const settings = {
     dots: true,
@@ -47,7 +49,7 @@ const Body = ({theSetter}) => {
           </div>
         </Slider>
       </div>
-        <Cards theSetter={theSetter}/>
+        <Cards/>
     </div>
   )
 }

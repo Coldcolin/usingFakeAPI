@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from "axios"
 import Loading from "../Loading/Loading"
 
-const Category = ({theSetter}) => {
+const Category = () => {
     const {cat} = useParams();
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(false)
@@ -34,13 +34,13 @@ const Category = ({theSetter}) => {
     getProducts()
   },[cat])
   return (
-    <div className='Category' style={theSetter}>
+    <div className='Category' style={{}}>
         <h1>{cat} Category</h1>
         <div className="Category-Holder">
         <div className="Category-Item-Holder">
         {
             load? Array.from(Array(10).keys())?.map((i, index)=>(
-          <div key={index} ><Loading theSetter={theSetter}/></div>
+          <div key={index} ><Loading theSetter={{}}/></div>
         )): products?.map((i)=>(
             <Link key={i.id} className='hvr-float-shadow' to={`/detail/${i.id}`}>
                 <div className='Category-Image-holder'>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "./Header.css"
 import ThemeLogo from "../../assets/MoonMoon-removebg-preview.png"
 import LightLogo from "../../assets/SunImage-removebg-preview.png"
@@ -7,9 +7,11 @@ import {RiShoppingCartFill} from "react-icons/ri"
 import {useNavigate, NavLink} from "react-router-dom"
 import Drop from "../Drop/Drop"
 import axios from "axios"
-import sound from "../../assets/interface-soft-abbreviated-click-131438.mp3"
+import sound from "../../assets/interface-soft-abbreviated-click-131438.mp3";
+import {ThemeContext} from "../../api/Context"
 
-const Header = ({changeTheme, theSetter, theme}) => {
+const Header = () => {
+    const {changeTheme, theme, theSetter}=useContext(ThemeContext);
     const navigate = useNavigate()
     const [drop, updateDrop] = useState(false);
     const handleDropH =()=>{
@@ -37,7 +39,7 @@ const Header = ({changeTheme, theSetter, theme}) => {
 
     function play(){
         new Audio(sound).play()
-      }
+    }
 
     useEffect(()=>{
         getCats()

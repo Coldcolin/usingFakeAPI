@@ -2,9 +2,9 @@ import React from 'react'
 import "./Cart.css";
 import CartItems from "./CartItems.jsx"
 
-const Cart = ({theSetter}) => {
+const Cart = () => {
   return (
-    <div className="Cart-Holder" style={theSetter}>
+    <div className="Cart-Holder">
       <div className="Cart-Box">
       <div className="Cart-Title">
         <h4>Shopping Cart</h4>
