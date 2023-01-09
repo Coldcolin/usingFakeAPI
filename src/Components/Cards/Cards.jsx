@@ -3,15 +3,21 @@ import "./Cards.css"
 import dummy from "../../assets/weddingRing.jpg"
 import  axios  from 'axios';
 import {Link} from "react-router-dom"
+import Loading from "../Loading/Loading"
+import sound from "../../assets/click-21156.mp3"
 
-const Cards = () => {
+const Cards = ({theSetter}) => {
   const [products, setProducts] = useState([]);
+  const [load, setLoad] = useState(false)
+
 
   async function getProducts(){
     try{
+      setLoad(true)
       const res = await axios.get('https://fakestoreapi.com/products')
-      console.log(res.data);
+      // console.log(res.data);
       setProducts(res.data)
+      setLoad(false)
     }catch(error){
       if (error.response) {
         console.log(error.response.data);
@@ -26,6 +32,10 @@ const Cards = () => {
     }
   }
 
+  function play(){
+    new Audio(sound).play()
+  }
+
   useEffect(()=>{
     getProducts()
   },[])
@@ -33,8 +43,10 @@ const Cards = () => {
     <div className="Card-Holder">
       <div className="Card-Item-Holder">
       {
-        products?.map((i)=>(
-          <Link key={i.id} className='hvr-float-shadow' to={`/detail/${i.id}`}>
+        load? Array.from(Array(20).keys())?.map((i, index)=>(
+          <div key={index} ><Loading theSetter={theSetter}/></div>
+        )): products?.map((i)=>(
+          <Link key={i.id} className='hvr-float-shadow' to={`/detail/${i.id}`} onClick={play}>
             <div className='Card-Image-holder'>
               <img src={i.image} className='Card-Image'/>
             </div>

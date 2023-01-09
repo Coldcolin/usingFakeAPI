@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react'
 import "./Details.css";
 import {useParams} from "react-router-dom"
 
-const Details = () => {
+const Details = ({theSetter}) => {
   const {id} = useParams()
   const [products, setProducts] = useState([]);
 
   async function getProducts(){
     try{
       const res = await axios.get(`https://fakestoreapi.com/products/${id}`)
-      console.log(res.data);
+      // console.log(res.data);
       setProducts(res.data)
     }catch(error){
       if (error.response) {
@@ -30,12 +30,12 @@ const Details = () => {
     getProducts()
   },[])
   return (
-    <div className="Details-Holder">
+    <div className="Details-Holder" style={theSetter}>
       <div className="Details-Card">
         <div className="Details-Image-Holder">
           <img src={products.image} alt="productImage"  className="Detail-Image"/>
         </div>
-        <div className="Details-details">
+        <div className="Details-details" style={{color: "black"}}>
           <div>
           <h3>title: {products.title}</h3>
           <p>Category: {products.category}</p>

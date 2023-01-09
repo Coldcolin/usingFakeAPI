@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import axios from "axios"
 import Cards from "../Cards/Cards"
 import Slider from "react-slick";
@@ -8,15 +8,17 @@ import "slick-carousel/slick/slick-theme.css";
 import clothes from "../../assets/clothes.jpg";
 import electronics from "../../assets/monilePhone.jpg";
 import jewelry from "../../assets/weddingRing.jpg";
+import Loading from "../Loading/Loading"
 
 
 
-const Body = () => {
+
+const Body = ({theSetter}) => {
 
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    // speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -25,9 +27,10 @@ const Body = () => {
     cssEase: "linear"
   };
 
+
   
   return (
-    <div className="Body-holder">
+    <div className="Body-holder" style={theSetter}>
       <div className="slider">
         <Slider {...settings}>
           <div className="slider-div">
@@ -44,7 +47,7 @@ const Body = () => {
           </div>
         </Slider>
       </div>
-      <Cards/>
+        <Cards theSetter={theSetter}/>
     </div>
   )
 }
