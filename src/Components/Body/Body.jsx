@@ -10,12 +10,16 @@ import electronics from "../../assets/monilePhone.jpg";
 import jewelry from "../../assets/weddingRing.jpg";
 import Loading from "../Loading/Loading"
 import {ThemeContext} from "../../api/Context"
+import { useDispatch } from 'react-redux';
+import {total} from "../../features/features.js"
 
 
 
 
 const Body = () => {
+  const dispatch = useDispatch();
   const {theSetter, theme} = useContext(ThemeContext)
+  console.log(total)
 
   const settings = {
     dots: true,

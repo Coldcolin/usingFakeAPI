@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import "./Cards.css"
-import dummy from "../../assets/weddingRing.jpg"
+import { useDispatch } from "react-redux"
+import { bringProducts } from "../../features/features.js"
 import  axios  from 'axios';
 import {Link} from "react-router-dom"
 import Loading from "../Loading/Loading"
 import sound from "../../assets/click-21156.mp3"
 
 const Cards = () => {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [load, setLoad] = useState(false)
 
@@ -16,7 +18,8 @@ const Cards = () => {
       setLoad(true)
       const res = await axios.get('https://fakestoreapi.com/products')
       // console.log(res.data);
-      setProducts(res.data)
+      setProducts(res.data);
+      dispatch(bringProducts(res.data))
       setLoad(false)
     }catch(error){
       if (error.response) {
