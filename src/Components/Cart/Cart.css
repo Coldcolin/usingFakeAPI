@@ -64,6 +64,11 @@
     height: 70px;
     object-fit: cover;
 }
+.Cart-Item h6{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 .Cart-Calc{
     width: 80px;
     height: inherit;
@@ -102,4 +107,10 @@
     background-color: rgb(83, 8, 117);
     transition: all 350ms;
     transform: scale(1.005);
+}
+
+@media screen and (max-width: 670px){
+    .Cart-Box{
+        width: 90%;
+    }
 }

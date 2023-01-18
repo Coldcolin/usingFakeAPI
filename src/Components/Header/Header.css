@@ -12,6 +12,7 @@
     height: 70px;
     border-radius: 0 0 5px 5px;
     justify-content: space-between;
+    padding: 20px;
     align-items: center;
     box-shadow: 2px 18px 23px -16px rgba(255,255,255,0.75);
     -webkit-box-shadow: 2px 18px 23px -16px rgba(255,255,255,0.75);
@@ -127,7 +128,7 @@
     border-radius: 20px;
     /* background-color: black; */
     height: 40px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     transition: all 350ms;
     cursor: pointer;
 }
@@ -146,3 +147,17 @@
     transition: all 350ms;
 }
 
+@media screen and (min-width: 670px){
+  .menu{
+    display: none;
+  }
+}
+@media screen and (max-width: 670px){
+  .Header-Links{
+    display: none;
+  }
+  .menu{
+    font-size: 22px;
+    cursor: pointer;
+  }
+}

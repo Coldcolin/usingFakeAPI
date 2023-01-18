@@ -1,20 +1,25 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import "./Details.css";
+import Swal from 'sweetalert2'
 import {useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {addToCart} from "../../features/features.js"
+import {addToCart, total} from "../../features/features.js"
+import Loading from "../Loading/Loading"
 
 const Details = ({theSetter}) => {
   const dispatch = useDispatch()
   const {id} = useParams()
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   async function getProducts(){
     try{
+      setLoading(true)
       const res = await axios.get(`https://fakestoreapi.com/products/${id}`)
       // console.log(res.data);
       setProducts(res.data)
+      setLoading(false)
     }catch(error){
       if (error.response) {
         console.log(error.response.data);
@@ -35,7 +40,8 @@ const Details = ({theSetter}) => {
   },[])
   return (
     <div className="Details-Holder" style={theSetter}>
-      <div className="Details-Card">
+      {
+        loading? <Loading/>: <div className="Details-Card">
         <div className="Details-Image-Holder">
           <img src={products.image} alt="productImage"  className="Detail-Image"/>
         </div>
@@ -48,11 +54,22 @@ const Details = ({theSetter}) => {
           <h4>Price: ₦ {products.price}</h4>
           <h5>Rating: 3.5</h5>
           </div>
-          <div className="Detail-button" onClick={()=>{dispatch(addToCart(products))}}>
+          <div className="Detail-button" onClick={()=>{
+            dispatch(addToCart(products));
+            dispatch(total());
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Item added to Cart',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            }}>
             Add to cart
           </div>
         </div>
-      </div>
+      </div> 
+      }
     </div>
   )
 }

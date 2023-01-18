@@ -43,3 +43,10 @@
     margin-top: 20px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 670px){
+    .Details-Card{
+        width: 90%;
+    }
+    
+}

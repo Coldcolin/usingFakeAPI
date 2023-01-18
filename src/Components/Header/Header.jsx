@@ -9,9 +9,15 @@ import Drop from "../Drop/Drop"
 import axios from "axios"
 import sound from "../../assets/interface-soft-abbreviated-click-131438.mp3";
 import {ThemeContext} from "../../api/Context"
+import {BsMenuDown} from "react-icons/bs"
+import {BsMenuUp} from "react-icons/bs"
+import DropDown from "../Drop/DropDown"
+import { useSelector } from 'react-redux';
 
 const Header = () => {
     const {changeTheme, theme, theSetter}=useContext(ThemeContext);
+    const amount = useSelector((state) => state.commerce.amount);
+    const [toggle, setToggle] = useState(false)
     const navigate = useNavigate()
     const [drop, updateDrop] = useState(false);
     const handleDropH =()=>{
@@ -56,7 +62,7 @@ const Header = () => {
                 <NavLink style={({ isActive }) =>
               isActive ? activeColorObject : colorObject} to="/category"><li className="hvr-bounce-to-right" onMouseOver={handleDropH} >Category</li></NavLink>
                 <NavLink style={({ isActive }) =>
-              isActive ? activeColorObject : colorObject} to="cart"><li className="hvr-bounce-to-right" onMouseOver={handleDropO} ><RiShoppingCartFill/>{"  "}Cart</li></NavLink>
+              isActive ? activeColorObject : colorObject} to="cart"><li className="hvr-bounce-to-right" onMouseOver={handleDropO} ><RiShoppingCartFill/>{"  "}Cart {amount}</li></NavLink>
             </ul>
         </div>
         <div className="Header-Toggle" onClick={play}>
@@ -64,6 +70,16 @@ const Header = () => {
                 {theme? <img src={LightLogo} alt="theme" className="right"/>: <img src={ThemeLogo} alt="theme" className="left"/>}
             </div>
         </div>
+        {
+            !toggle? <div className="menu" onClick={()=>{setToggle(true)}}>
+            <BsMenuUp/>
+        </div>: <div className="menu" onClick={()=>{setToggle(false)}}>
+            <BsMenuDown/>
+        </div>
+        }
+            {
+                toggle? <DropDown cats={cats} set={setToggle}/>: null
+            }
         {drop && <Drop cats={cats} handleDrop={handleDropH} remove={handleDropO}/>}
     </div>
   )

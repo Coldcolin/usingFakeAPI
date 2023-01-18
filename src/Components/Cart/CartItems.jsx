@@ -13,14 +13,14 @@ const CartItems =(props)=>{
         // <div className="Cart-Items">
           <div className="Cart-Item">
             <img src={props.image} alt="cart-item"/>
-            <h5>{props.title}</h5>
+            <h6>{props.title}</h6>
             <div className="Cart-Calc">
               <button  onClick={()=> {dispatch(addToCart(props.item)); setChange(!change)}}>+</button>
               <p>{props.QTY}</p>
               <button onClick={()=> {dispatch(minusItem(props.item)); setChange(!change)}}>-</button>
             </div>
             <h3>${props.price * props.QTY}</h3>
-            <p onClick={()=>{ dispatch(removeItem(props.item)); setChange(!change)}}>Remove</p>
+            <p onClick={()=>{ dispatch(removeItem(props.item))}}>Remove</p>
           {/* </div> */}
         </div>
     )

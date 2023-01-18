@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import "./Category.css";
 import { useParams, Link } from 'react-router-dom';
 import axios from "axios"
 import Loading from "../Loading/Loading"
+import { ThemeContext } from '../../api/Context';
 
 const Category = () => {
     const {cat} = useParams();
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(false)
+    const {theSetter}=useContext(ThemeContext);
 
   async function getProducts(){
     try{
@@ -35,7 +37,7 @@ const Category = () => {
   },[cat])
   return (
     <div className='Category' style={{}}>
-        <h1>{cat} Category</h1>
+        <h1 style={theSetter}>{cat} Category</h1>
         <div className="Category-Holder">
         <div className="Category-Item-Holder">
         {

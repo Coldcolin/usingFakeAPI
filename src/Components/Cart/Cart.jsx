@@ -12,6 +12,21 @@ const Cart = () => {
   
   const dispatch = useDispatch()
 
+  const payment =()=>{
+    const refVal = "my-ref"+ Math.random() * 1000;
+    window.Korapay.initialize({
+      key: "pk_test_AeraXcqwfDvr9UaQ7CVLPHujcrqWyKWUY4MRK7Fi",
+      reference: `${refVal}`,
+      amount: totalAmount, 
+      currency: "NGN",
+      customer: {
+        name: "John Doe",
+        email: "john@doe.com"
+      },
+      notification_url: "https://example.com/webhook"
+    });
+  }
+
 
   return (
     <div className="Cart-Holder">
@@ -29,7 +44,7 @@ const Cart = () => {
       } 
       </div>
       <div className="Cart-Check">
-      <button >Check Out</button>
+      <button onClick={payment} >Check Out</button>
       </div>
       </div>
     </div>
