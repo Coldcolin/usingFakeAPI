@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './App.css'
 import Body from "./Components/Body/Body";
 import Header from "./Components/Header/Header"
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Detail from "./Components/Details/Details"
 import Category from './Components/Category/Category';
 import Cart from './Components/Cart/Cart';
